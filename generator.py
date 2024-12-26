@@ -1,8 +1,22 @@
 import sys
 
 def gen_code(line):
+    result = []
+    counter = 0
+    
     for char in line:
-        print("+"*ord(char)+".")
+        target_value = ord(char)
+        if counter > target_value or 250 < target_value:
+            result.append('/')
+            counter = 0
+            
+        while counter < target_value:
+            result.append('+')
+            counter = (counter + 1) % 250
+            
+        result.append('.')
+        
+    return print(''.join(result))
 
 def shell():
     while True:
@@ -24,4 +38,6 @@ def gen_file(filename:str):
 
 if __name__=='__main__':
     if len(sys.argv)<2: shell()
-    else: gen_file(sys.argv[1])
+    else: 
+        print(f"[{" ".join(sys.argv[1:])}]")
+        gen_file(" ".join(sys.argv[1:]))
