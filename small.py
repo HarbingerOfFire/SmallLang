@@ -9,7 +9,8 @@ def small_interpreter(code):
             counter = (counter + 1) % 250
         elif char == '.':
             output.append(chr(counter))
-
+        elif char == '/':
+            counter = 0
     return ''.join(output)
 
 def shell():
